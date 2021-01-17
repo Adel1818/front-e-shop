@@ -16,7 +16,7 @@ export default class Create extends React.Component {
  
     componentDidMount() {
         let urlElements = window.location.href.split('/').pop();
-        axios.get(`http://localhost:8091/api/produits/`+urlElements)
+        axios.get(process.env.REACT_APP_API_END_POINT_URI + `/produits/`+urlElements)
           .then(res => {
             const produit = res.data;
             console.log(produit.desigProduit);
@@ -48,7 +48,7 @@ export default class Create extends React.Component {
           modeleProduit: this.state.modeleProduit
         };
     
-        axios.post(`http://localhost:8091/api/produits`, produit)
+        axios.post(process.env.REACT_APP_API_END_POINT_URI + `/produits`, produit)
           .then(res => {
             console.log(res);
             console.log(res.data);

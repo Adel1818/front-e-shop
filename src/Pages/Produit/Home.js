@@ -10,7 +10,8 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8091/api/produits`)
+        alert(process.env.REACT_APP_API_END_POINT_URI + `/produits`)
+        axios.get(process.env.REACT_APP_API_END_POINT_URI + `/produits`)
           .then(res => {
             const produits = res.data;
             console.log(produits);
@@ -21,6 +22,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container style={{ marginTop: '100px' }}>
+
                 <Button variant="secondary" style={{ float: 'right', margin: '20px' }} 
                 onClick={() => this.props.history.push('/produits/create')}>Add a Employee</Button>
                 <Table striped bordered hover>
