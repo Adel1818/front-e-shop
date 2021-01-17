@@ -10,7 +10,6 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        alert(process.env.REACT_APP_API_END_POINT_URI + `/produits`)
         axios.get(process.env.REACT_APP_API_END_POINT_URI + `/produits`)
           .then(res => {
             const produits = res.data;
