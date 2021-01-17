@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "776f6bf1-5277-4644-b437-06d5d5008e6f",
+		"name": "api-rest-spring-boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get produits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8099/api/produits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"produits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one produit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8099/api/produits/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"produits",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create produit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categorie\": {\r\n        \"idCateg\": 1,\r\n        \"codeCateg\": \"1\",\r\n        \"libelleCateg\": \"LabTops\",\r\n        \"hibernateLazyInitializer\": {}\r\n    },\r\n    \"desigProduit\": \"Acer Salah\",\r\n    \"puProduit\": 488.000,\r\n    \"qteProduit\": 12,\r\n    \"configProduit\": \"Acer Aspire AX3300-ED2215A AMD Athlon II X2 215 4GB 640GB GeForce 9200 Winndows 7 Home Desktop \",\r\n    \"marqueProduit\": \"Acer\",\r\n    \"modeleProduit\": \"Aspire AX3300 Adel\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8099/api/produits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"produits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update produit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idProduit\": 1,\r\n    \"categorie\": {\r\n        \"idCateg\": 1,\r\n        \"codeCateg\": \"1\",\r\n        \"libelleCateg\": \"LabTops edit\",\r\n        \"hibernateLazyInitializer\": {}\r\n    },\r\n    \"desigProduit\": \"Acer edit\",\r\n    \"puProduit\": 480.000,\r\n    \"qteProduit\": 12,\r\n    \"configProduit\": \"Acer Aspire AX3300-ED2215A AMD Athlon II X2 215 4GB 640GB GeForce 9200 Winndows 7 Home Desktop \",\r\n    \"marqueProduit\": \"Acer\",\r\n    \"modeleProduit\": \"Aspire AX3300\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8099/api/produits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"produits"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
