@@ -16,7 +16,7 @@ export default class Create extends React.Component {
  
     componentDidMount() {
         let urlElements = window.location.href.split('/').pop();
-        axios.get(process.env.REACT_APP_API_END_POINT_URI + `/produits/`+urlElements)
+        axios.get(process.env.REACT_APP_API_END_POINT_URI + `/api/produits/`+urlElements)
           .then(res => {
             const produit = res.data;
             console.log(produit.desigProduit);
