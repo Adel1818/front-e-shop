@@ -6,16 +6,18 @@ import axios from 'axios';
 export default class Create extends React.Component {
 
     state = {
-        desigProduit: '0',
+        desigProduit: '',
         puProduit: 0,
         qteProduit: 0,
         configProduit: '',
         marqueProduit: '',
-        modeleProduit: ''
+        modeleProduit: '',
+        urlElements: ''
     }
  
     componentDidMount() {
-        let urlElements = window.location.href.split('/').pop();
+        let urlElements = window.location.href.split('/').pop()
+        this.setState({ urlElements })
         axios.get(process.env.REACT_APP_API_END_POINT_URI + `/api/produits/`+urlElements)
           .then(res => {
             const produit = res.data;
@@ -32,8 +34,7 @@ export default class Create extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
-    
-        const produit = {
+        let produit = {
           categorie: {
                 "idCateg": 1,
                 "codeCateg": "1",
@@ -47,8 +48,13 @@ export default class Create extends React.Component {
           marqueProduit: this.state.marqueProduit,
           modeleProduit: this.state.modeleProduit
         };
+
+        if(this.state.urlElements != "create")
+        {
+            produit.idClient = this.state.urlElements
+        }
     
-        axios.post(process.env.REACT_APP_API_END_POINT_URI + `/produits`, produit)
+        axios.post(process.env.REACT_APP_API_END_POINT_URI + `/api/produits`, produit)
           .then(res => {
             console.log(res);
             console.log(res.data);
@@ -57,9 +63,16 @@ export default class Create extends React.Component {
     }
     
     render() {
+
+        let pageName = 'Ajout'
+        if(this.state.urlElements != "create")
+        {
+            pageName = 'Edit'
+        }
+
         return (
             <Container style={{ marginTop: '50px' }}>
-                <h1>Add Produit</h1>
+                <h1>{pageName} produit</h1>
 
                 <Form style={{ margin: '50px', maxWidth:'600px' }} onSubmit={this.handleSubmit} >
 
@@ -89,11 +102,14 @@ export default class Create extends React.Component {
                     </Form.Group>
 
                     <Form.Group controlId="modeleProduit">
-                        <Form.Label>modele</Form.Label>
+                        <Form.Label>Modéle</Form.Label>
                         <Form.Control name="modeleProduit" value={this.state.modeleProduit} onChange={this.handleChange} required />
                     </Form.Group>
 
-                    <Button type="submit" style={{ width:'180px' }}>Add</Button>
+                    <Button type="submit" style={{ width:'180px', margin:5 }}>{pageName}</Button> 
+                    <button type="button" class="btn btn-secondary" style={{ width:'180px', margin:5 }} 
+                        onClick={() => this.props.history.push('/produits')} >Annuler</button>
+ 
                 </Form>
             </Container>
         )
