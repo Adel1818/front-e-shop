@@ -6,12 +6,8 @@ import axios from 'axios';
 export default class Create extends React.Component {
 
     state = {
-        desigCategorie: '',
-        puCategorie: 0,
-        qteCategorie: 0,
-        configCategorie: '',
-        marqueCategorie: '',
-        modeleCategorie: '',
+        codeCateg: '',
+        libelleCateg: '',
         urlElements: ''
     }
  
@@ -21,7 +17,7 @@ export default class Create extends React.Component {
         axios.get(process.env.REACT_APP_API_END_POINT_URI + `/api/categories/`+urlElements)
           .then(res => {
             const categorie = res.data;
-            console.log(categorie.desigCategorie);
+            console.log(categorie);
             this.setState(categorie);
         })
     }
@@ -35,28 +31,17 @@ export default class Create extends React.Component {
         event.preventDefault();
 
         let categorie = {
-          categorie: {
-                "idCateg": 1,
-                "codeCateg": "1",
-                "libelleCateg": "LabTops",
-                "hibernateLazyInitializer": {}
-            },
-          desigCategorie: this.state.desigCategorie,
-          puCategorie: this.state.puCategorie,
-          qteCategorie: this.state.qteCategorie,
-          configCategorie: this.state.configCategorie,
-          marqueCategorie: this.state.marqueCategorie,
-          modeleCategorie: this.state.modeleCategorie
+          codeCateg: this.state.codeCateg,
+          libelleCateg: this.state.libelleCateg,
         };
 
         if(this.state.urlElements != "create")
         {
-            categorie.idClient = this.state.urlElements
+            categorie.idCateg = this.state.urlElements
         }
     
         axios.post(process.env.REACT_APP_API_END_POINT_URI + `/api/categories`, categorie)
           .then(res => {
-            console.log(res);
             console.log(res.data);
             this.props.history.push('/categories');
         })
@@ -72,42 +57,22 @@ export default class Create extends React.Component {
 
         return (
             <Container style={{ marginTop: '50px' }}>
-                <h1>{pageName} categorie</h1>
+                <h1>{pageName} catégorie</h1>
 
                 <Form style={{ margin: '50px', maxWidth:'600px' }} onSubmit={this.handleSubmit} >
 
-                    <Form.Group controlId="desigCategorie">
-                        <Form.Label>Libellé</Form.Label>
-                        <Form.Control name="desigCategorie" value={this.state.desigCategorie} onChange={this.handleChange} required />
+                    <Form.Group controlId="codeCateg">
+                        <Form.Label>Code</Form.Label>
+                        <Form.Control name="codeCateg" value={this.state.codeCateg} onChange={this.handleChange} required />
                     </Form.Group>
 
-                    <Form.Group controlId="puCategorie">
-                        <Form.Label>Prix unitaire</Form.Label>
-                        <Form.Control type="number" name="puCategorie" value={this.state.puCategorie} onChange={this.handleChange} required />
+                    <Form.Group controlId="libelleCateg">
+                        <Form.Label>Libellé </Form.Label>
+                        <Form.Control name="libelleCateg" value={this.state.libelleCateg} onChange={this.handleChange} required />
                     </Form.Group>
-    
-                    <Form.Group controlId="qteCategorie">
-                        <Form.Label>Qte</Form.Label>
-                        <Form.Control type="number" name="qteCategorie" value={this.state.qteCategorie} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="configCategorie">
-                        <Form.Label>Config</Form.Label>
-                        <Form.Control name="configCategorie" value={this.state.configCategorie} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="marqueCategorie">
-                        <Form.Label>Marque</Form.Label>
-                        <Form.Control name="marqueCategorie" value={this.state.marqueCategorie} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="modeleCategorie">
-                        <Form.Label>modele</Form.Label>
-                        <Form.Control name="modeleCategorie" value={this.state.modeleCategorie} onChange={this.handleChange} required />
-                    </Form.Group>
-
+ 
                     <Button type="submit" style={{ width:'180px', margin:5 }}>{pageName}</Button> 
-                    <button type="button" class="btn btn-secondary" style={{ width:'180px', margin:5 }} 
+                    <button type="button" className="btn btn-secondary" style={{ width:'180px', margin:5 }} 
                         onClick={() => this.props.history.push('/categories')} >Annuler</button>
  
                 </Form>

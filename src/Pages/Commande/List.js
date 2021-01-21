@@ -21,7 +21,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container style={{ marginTop: '100px' }}>
-                <h1>Liste des Commandes</h1>
+                <h1>Liste des commandes</h1>
 
                 <Button variant="success" style={{ float: 'right', margin: '20px' }} class="btn btn-secondary" 
                 onClick={() => this.props.history.push('/commandes/create')}>Ajouter commande</Button>
@@ -29,9 +29,9 @@ export default class Home extends React.Component {
                     <thead>
                         <tr>
                         <th>ID</th>
-                        <th>Employee Name</th>
-                        <th>Employee Email</th>
-                        <th>Employee Mobile</th>
+                        <th>Quantité</th>
+                        <th>Date</th>
+                        <th>Etat</th>
                         <th>Action</th>
                         </tr>
                     </thead>
@@ -39,10 +39,10 @@ export default class Home extends React.Component {
 
                         { this.state.commandes.map(commande => 
                             <tr>
-                                <td>{commande.desigCommande}</td>
-                                <td>{commande.puCommande}</td>
+                                <td>{commande.idCommande}</td>
                                 <td>{commande.qteCommande}</td>
-                                <td>{commande.configCommande}</td>
+                                <td>{commande.dateCommande}</td>
+                                <td>{commande.etatCommande}</td>
                                 <td style={{ width:'200px', margin:5 }}>
                                     <Button onClick={() => this.props.history.push("/commandes/" + commande.idCommande )} style={{margin:5}}> Update</Button> 
                                     <Button variant="danger" style={{margin:5}}

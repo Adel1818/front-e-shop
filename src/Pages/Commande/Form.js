@@ -6,12 +6,9 @@ import axios from 'axios';
 export default class Create extends React.Component {
 
     state = {
-        desigCommande: '',
-        puCommande: 0,
         qteCommande: 0,
-        configCommande: '',
-        marqueCommande: '',
-        modeleCommande: '',
+        dateCommande: '2016-11-22',
+        etatCommande: 0,
         urlElements: ''
     }
  
@@ -34,23 +31,14 @@ export default class Create extends React.Component {
         event.preventDefault();
 
         let commande = {
-          categorie: {
-                "idCateg": 1,
-                "codeCateg": "1",
-                "libelleCateg": "LabTops",
-                "hibernateLazyInitializer": {}
-            },
-          desigCommande: this.state.desigCommande,
-          puCommande: this.state.puCommande,
-          qteCommande: this.state.qteCommande,
-          configCommande: this.state.configCommande,
-          marqueCommande: this.state.marqueCommande,
-          modeleCommande: this.state.modeleCommande
+            qteCommande: this.state.qteCommande,
+            dateCommande: this.state.dateCommande,
+            etatCommande: this.state.etatCommande
         };
 
         if(this.state.urlElements != "create")
         {
-            commande.idClient = this.state.urlElements
+            commande.idCommande = this.state.urlElements
         }
     
         axios.post(process.env.REACT_APP_API_END_POINT_URI + `/api/commandes`, commande)
@@ -75,34 +63,19 @@ export default class Create extends React.Component {
 
                 <Form style={{ margin: '50px', maxWidth:'600px' }} onSubmit={this.handleSubmit} >
 
-                    <Form.Group controlId="desigCommande">
-                        <Form.Label>Libellé</Form.Label>
-                        <Form.Control name="desigCommande" value={this.state.desigCommande} onChange={this.handleChange} required />
+                    <Form.Group controlId="qteCommande">
+                        <Form.Label>Quantité</Form.Label>
+                        <Form.Control name="qteCommande" value={this.state.qteCommande} onChange={this.handleChange} required />
                     </Form.Group>
 
-                    <Form.Group controlId="puCommande">
-                        <Form.Label>Prix unitaire</Form.Label>
-                        <Form.Control type="number" name="puCommande" value={this.state.puCommande} onChange={this.handleChange} required />
+                    <Form.Group controlId="dateCommande">
+                        <Form.Label>Date</Form.Label>
+                        <Form.Control type="text" name="dateCommande" value={this.state.dateCommande} onChange={this.handleChange} required />
                     </Form.Group>
     
-                    <Form.Group controlId="qteCommande">
-                        <Form.Label>Qte</Form.Label>
-                        <Form.Control type="number" name="qteCommande" value={this.state.qteCommande} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="configCommande">
-                        <Form.Label>Config</Form.Label>
-                        <Form.Control name="configCommande" value={this.state.configCommande} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="marqueCommande">
-                        <Form.Label>Marque</Form.Label>
-                        <Form.Control name="marqueCommande" value={this.state.marqueCommande} onChange={this.handleChange} required />
-                    </Form.Group>
-
-                    <Form.Group controlId="modeleCommande">
-                        <Form.Label>modele</Form.Label>
-                        <Form.Control name="modeleCommande" value={this.state.modeleCommande} onChange={this.handleChange} required />
+                    <Form.Group controlId="etatCommande">
+                        <Form.Label>Etat</Form.Label>
+                        <Form.Control type="number" name="etatCommande" value={this.state.etatCommande} onChange={this.handleChange} required />
                     </Form.Group>
 
                     <Button type="submit" style={{ width:'180px', margin:5 }}>{pageName}</Button> 
