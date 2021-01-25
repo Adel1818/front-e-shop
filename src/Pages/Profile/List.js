@@ -21,9 +21,9 @@ export default class Home extends React.Component {
     render() {
         return (
             <Container style={{ marginTop: '100px' }}>
-                <h1>Liste des Profiles</h1>
+                <h1>Liste des profiles</h1>
 
-                <Button variant="success" style={{ float: 'right', margin: '20px' }} class="btn btn-secondary" 
+                <Button variant="success" style={{ float: 'right', margin: '20px' }} className="btn btn-secondary" 
                 onClick={() => this.props.history.push('/profiles/create')}>Ajouter profile</Button>
                 <Table striped bordered hover>
                     <thead>

@@ -107,7 +107,7 @@ export default class Create extends React.Component {
                     </Form.Group>
 
                     <Button type="submit" style={{ width:'180px', margin:5 }}>{pageName}</Button> 
-                    <button type="button" class="btn btn-secondary" style={{ width:'180px', margin:5 }} 
+                    <button type="button" className="btn btn-secondary" style={{ width:'180px', margin:5 }} 
                         onClick={() => this.props.history.push('/produits')} >Annuler</button>
  
                 </Form>

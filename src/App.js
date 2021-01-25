@@ -19,6 +19,9 @@ import form_Commande from './Pages/Commande/Form';
 import List_Profile from './Pages/Profile/List';
 import form_Profile from './Pages/Profile/Form';
 
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Login/Signup';
+ 
 
 import NotFound from './Pages/404.js';
 import Navbar from 'react-bootstrap/Navbar'
@@ -28,22 +31,29 @@ import Nav from 'react-bootstrap/Nav'
 function App() {
   return (
     <Router>
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    {(window.location.pathname !== '/sign-in')?
+      
+    <Navbar bg="dark" expand="lg" className="navbar navbar-dark bg-primary">
+      <Navbar.Brand href="#home">E-Shop</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href='/'>Home</Nav.Link>
           <Nav.Link href='/produits'>Produits</Nav.Link>
           <Nav.Link href='/clients'>Clients</Nav.Link>
           <Nav.Link href='/categories'>Categories</Nav.Link>
           <Nav.Link href='/commandes'>Commandes</Nav.Link>
           <Nav.Link href='/profile'>Profile</Nav.Link>
 
+          <Nav.Link href='/sign-in'>sign-in</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    : <div> </div>
+  }
     <Switch>
+ 
+        <Route exact path="/" component={List_Produit} />
+
         <Route exact path="/produits" component={List_Produit} />
         <Route path="/produits/create" component={form_Produit} />
         <Route path="/produits/:id" component={form_Produit} />
@@ -63,6 +73,9 @@ function App() {
         <Route exact path="/profile" component={List_Profile} />
         <Route path="/profile/create" component={form_Profile} />
         <Route path="/profile/:id" component={form_Profile} />
+
+
+        <Route path="/sign-in" component={Login} />
 
         <Route component={NotFound} />
     </Switch>

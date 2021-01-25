@@ -23,7 +23,7 @@ export default class Home extends React.Component {
             <Container style={{ marginTop: '100px' }}>
                 <h1>Liste des commandes</h1>
 
-                <Button variant="success" style={{ float: 'right', margin: '20px' }} class="btn btn-secondary" 
+                <Button variant="success" style={{ float: 'right', margin: '20px' }} className="btn btn-secondary" 
                 onClick={() => this.props.history.push('/commandes/create')}>Ajouter commande</Button>
                 <Table striped bordered hover>
                     <thead>
