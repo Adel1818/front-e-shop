@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 
-export default class Home extends React.Component {
+export default class Home extends React.Component {  
     state = {
         clients: []
     }
@@ -18,7 +18,7 @@ export default class Home extends React.Component {
           })
     }
 
-    render() {
+    render() {       
         return (
             <Container style={{ marginTop: '100px' }}>
                 <h1>Liste des clients</h1>
@@ -50,9 +50,9 @@ export default class Home extends React.Component {
                                     <Button variant="danger" style={{margin:5}}
                                         onClick={() => { 
                                                             if (window.confirm('Are you sure you wish to delete this item?') ) 
-                                                            {
-                                                                axios.delete(process.env.REACT_APP_API_END_POINT_URI + `/api/clients/`+ client.idClient)
-                                                              
+                                                            {          
+                                                                axios.delete(process.env.REACT_APP_API_END_POINT_URI + `/api/clients/`+ client.idClient)   
+                                                
                                                             }
  
                                                        } 
@@ -68,3 +68,5 @@ export default class Home extends React.Component {
         )
     }
 }
+
+ 
